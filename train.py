@@ -1,7 +1,7 @@
 import scanpy as sc
 import tensorflow as tf
 
-from model import GAN
+from gan import GAN
 import utils
 
 if __name__ == "__main__":

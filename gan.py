@@ -12,11 +12,15 @@ class GAN(keras.Model):
         self.discriminator = self.get_discriminator()
         self.generator = self.get_generator()
 
+    # req for subclassed keras models
+    def call(self, inputs):
+        return self.generator(inputs)
+
     class Hyperparamaters(object):
         def __init__(self, gex_size, num_cells_generate):
             self.num_cells_generate = num_cells_generate
             self.gex_size = gex_size
-            self.num_epochs = 1000
+            self.num_epochs = 1
             self.batch_size = 2048 # todo
             self.latent_dim = 128
             self.gen_layer_1 = 256
@@ -105,10 +109,6 @@ class GAN(keras.Model):
     # sample latent space
     def sample_latent(self, batch_size):
         return tf.random.normal(shape=(batch_size, self.hyperparams.latent_dim))
-
-    # req for subclassed keras models
-    def call(self, inputs, **kwargs):
-        return self.generator(inputs)
 
     # end-to-end training
     def train_step(self, real):
