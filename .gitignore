@@ -1,4 +1,3 @@
 /venv/
 /.idea/
-/data/GSE144136_preprocessed.h5ad
-/trained_model/
+tb.ipynb
